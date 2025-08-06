@@ -6,6 +6,10 @@ public class Sword : MonoBehaviour
     private Animator animator;
     private PlayerController playerController;
     private ActiveWeapon activeWeapon;
+    [SerializeField] private GameObject slashAnimPrefab;
+    [SerializeField] private Transform slashAnimSpawnPoint;
+
+    private GameObject slashAnim;
 
     private void Awake()
     {
@@ -33,6 +37,26 @@ public class Sword : MonoBehaviour
     private void Attack()
     {
         animator.SetTrigger("Attack");
+        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
+        slashAnim.transform.parent = this.transform.parent;
+    }
+
+    public void SwingUpFlipAnim()
+    {
+        slashAnim.gameObject.transform.rotation = Quaternion.Euler(-180,0,0);
+        if (playerController.FacingLeft)
+        {
+            slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+        }
+    }
+
+    public void SwingDownFlipAnim()
+    {
+        slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90);
+        if (playerController.FacingLeft)
+        {
+            slashAnim.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     private void MouseFollowWithOfset()
