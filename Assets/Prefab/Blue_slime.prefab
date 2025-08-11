@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5157853992168755488}
   - component: {fileID: 6701358768434201021}
   - component: {fileID: 9031119079481270145}
+  - component: {fileID: 4850896775535775048}
+  - component: {fileID: 4254360108370261661}
   m_Layer: 0
   m_Name: Blue_slime
   m_TagString: Enemy
@@ -194,3 +196,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
+--- !u!114 &4850896775535775048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444052772143328546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d738a4f0a48a7cb42b7f238c58948b91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knockBackTime: 0.1
+--- !u!114 &4254360108370261661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444052772143328546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fadd607239fc25d4487a9d26de3e5f8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shiterFlashMat: {fileID: 2100000, guid: 60dedf72d6d81c84698b47665b4d97f2, type: 2}
+  restoreDefaulMatTime: 0.2
