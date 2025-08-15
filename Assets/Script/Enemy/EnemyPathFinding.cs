@@ -16,7 +16,7 @@ public class EnemyPathFinding : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (knockBack.gettingKnockedBack)
+        if (knockBack.GettingKnockedBack)
             return; 
         rb.MovePosition(rb.position + moveDir * speed * Time.fixedDeltaTime);
     }

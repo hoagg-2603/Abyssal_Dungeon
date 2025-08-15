@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Sword : MonoBehaviour
@@ -6,9 +7,12 @@ public class Sword : MonoBehaviour
     private Animator animator;
     private PlayerController playerController;
     private ActiveWeapon activeWeapon;
+    private bool attackButtonDown,isAttacking = false;
+
     [SerializeField] private GameObject slashAnimPrefab;
     [SerializeField] private Transform slashAnimSpawnPoint;
     [SerializeField] private Transform weaponCollider;
+    [SerializeField] private float swordAttackCD = 0.5f;
 
     private GameObject slashAnim;
 
@@ -27,21 +31,43 @@ public class Sword : MonoBehaviour
 
     private void Start()
     {
-        playerControls.Combat.Attack.started += _ => Attack();
+        playerControls.Combat.Attack.started += _ => StartAttacking();
+        playerControls.Combat.Attack.canceled += _ => StopAttacking();
     }
 
     private void Update()
     {
         MouseFollowWithOfset();
+        Attack();
+    }
+
+    private void StartAttacking()
+    {
+        attackButtonDown = true;
+    }
+
+    private void StopAttacking()
+    {
+        attackButtonDown = false;
     }
 
     private void Attack()
     {
-        animator.SetTrigger("Attack");
-        weaponCollider.gameObject.SetActive(true);
+        if(attackButtonDown && !isAttacking)
+        {
+            isAttacking = true;
+            animator.SetTrigger("Attack");
+            weaponCollider.gameObject.SetActive(true);
+            slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
+            slashAnim.transform.parent = this.transform.parent;
+            StartCoroutine(AttackCDRoutine());
+        }
+    }
 
-        slashAnim = Instantiate(slashAnimPrefab, slashAnimSpawnPoint.position, Quaternion.identity);
-        slashAnim.transform.parent = this.transform.parent;
+    private IEnumerator AttackCDRoutine()
+    {
+        yield return new WaitForSeconds(swordAttackCD);
+        isAttacking = false;
     }
 
     public void DoneAttackingAnimEvent()
@@ -60,7 +86,7 @@ public class Sword : MonoBehaviour
 
     public void SwingDownFlipAnimEvent()
     {
-        slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 90);
+        slashAnim.gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         if (playerController.FacingLeft)
         {
             slashAnim.GetComponent<SpriteRenderer>().flipX = true;

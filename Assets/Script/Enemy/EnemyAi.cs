@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyAi : MonoBehaviour
 {
+    [SerializeField] private float roamingChangeDirfFloat = 2f;
     private enum State
     {
         Roaming
@@ -29,7 +30,7 @@ public class EnemyAi : MonoBehaviour
         {
             Vector2 roamPos = GetRoamingPosition();
             enemyPathFinding.MoveTo(roamPos);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(roamingChangeDirfFloat);
         }
     }
 
