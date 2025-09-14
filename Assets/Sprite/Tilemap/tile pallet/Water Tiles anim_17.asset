@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Water Tiles anim_17
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 935657920, guid: a6bd9d9f4234afd4491a0a9429178e1c, type: 3}
+  m_Sprite: {fileID: -587872470, guid: a6bd9d9f4234afd4491a0a9429178e1c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
