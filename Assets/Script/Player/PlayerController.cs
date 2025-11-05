@@ -6,9 +6,10 @@ public class PlayerController : Singleton<PlayerController>
 {
     public bool FacingLeft { get { return facingLeft; } }
 
-    [SerializeField]private float moveSpeed = 1f;
-    [SerializeField]private float dashSpeed = 4f;
+    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float dashSpeed = 4f;
     [SerializeField] private TrailRenderer myTrailRender;
+    [SerializeField] private Transform weaponCollider;
 
     private Vector2 movement;
     private Rigidbody2D rb;
@@ -50,6 +51,11 @@ public class PlayerController : Singleton<PlayerController>
     {
         AdjusPlayerFacingDirection();
         Move();
+    }
+
+    public Transform GetWeaponCollider()
+    {
+        return weaponCollider;
     }
 
     private void PlayerInput()
