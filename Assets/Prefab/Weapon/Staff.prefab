@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6e3c39310d09f4da2f82244a7daabc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Staff
+  weaponInfo: {fileID: 11400000, guid: 73fbb403de90d384884b77aed0df367f, type: 2}
 --- !u!212 &4093379772084950096
 SpriteRenderer:
   m_ObjectHideFlags: 0
